@@ -9,16 +9,41 @@ try:
     df = pd.read_csv(data_file)
     st.write("Data loaded successfully!")
 
-    # Handle missing values
-    df = df.fillna(0)
-    
-    # Ensure 'price' column is numeric
-    df['price'] = pd.to_numeric(df['price'], errors='coerce')  # Convert non-numeric to NaN
-    
-    # Optionally fill NaN values in 'price'
-    df['price'].fillna(0, inplace=True)  # Replace NaN with 0 or other appropriate value
+    # The dataframe is missing values found in the following columns:
+    # - `model_year`
+    # - `cylinders`
+    # - `odometer`
+    # - `paint_color`
+    # - `is_4wd`
 
-    df['paint_color'] = df['paint_color'].astype(str)
+    # Also, we need to adjust some improperly assigned data types:
+    # - `model_year`, which is of `float64`, should be `int`
+    # - `cylinders`, which is of `float64`, should be `int64`
+    # - `is_4wd`, which is `float64`, should be `boolean`
+    # - `date_posted`, which is `string`, should be `datetime`
+
+    # Strategy for columns with missing values:
+    # - `model_year`: Rows will be dropped
+    # - `cylinders`: Rows will be set to 6
+    # - `odometer`: Rows will be dropped
+    # - `paint_color`: These will be set to 'gray'
+    # - `is_4wd`: These will be set to 0
+
+    # Handle missing values per missing value strategy (above)
+    # Drop rows with NaN in 'model_year' and 'odometer' columns
+    df = df.dropna(subset=['model_year', 'odometer'])
+
+    # Replace NaN values in columns with specified values
+    df['cylinders'] = df['cylinders'].fillna(6)
+    df['paint_color'] = df['paint_color'].fillna('gray')
+    df['is_4wd'] = df['is_4wd'].fillna(0)
+
+    # Convert date fields to their proper type to make data extraction more efficient/accurate
+    df['model_year'] = df['model_year'].astype(int)
+    df['cylinders'] = df['cylinders'].astype(int)
+    df['is_4wd'] = df['is_4wd'].astype(bool)
+    df['date_posted'] = pd.to_datetime(df['date_posted'])
+
     st.write(df.head())  # Display the first few rows of the DataFrame
     st.header("Sprint 4 project")
 
