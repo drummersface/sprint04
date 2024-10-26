@@ -44,7 +44,7 @@ try:
     df['is_4wd'] = df['is_4wd'].astype(bool)
     df['date_posted'] = pd.to_datetime(df['date_posted'])
 
-    st.header("Sprint 4 project", divider="gray")
+    st.header("Sprint 4 project")
     st.subheader("Analysis of vehicle data")
 
     # Pie chart of car conditions
