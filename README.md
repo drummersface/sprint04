@@ -4,8 +4,9 @@
 Description of project: This project examines various aspects and trends
 related to vehicle data.
 
-The following are the methods and libraries used to implement it:
-Libraries:
+The following are the methods and libraries used in the implementation:
+
+Libraries
 
 - Streamlit (streamlit): Used for building the interactive web application. Specifically, it is used to create the user interface, display text, and render visualizations.
 - Pandas (pandas): Used for data manipulation and analysis. In this code, it reads the CSV file and manages the DataFrame for data operations (like handling missing values).
@@ -13,7 +14,7 @@ Libraries:
 
 This code combines Streamlit for the interface and Plotly Express for interactive charts while Pandas handles data processing.
 
-Methods:
+Methods
 
 - st.write(): A Streamlit method to display data or text in the app. It's used to show confirmation messages, display the DataFrame, and other outputs.
 - st.header(): Displays a header to label sections within the app.
@@ -30,5 +31,7 @@ Methods:
 - st.error(): A Streamlit method that displays an error message in case the CSV file isn't found.
 
 To launch this project on your local machine:
-
+- Clone the following GitHub repository: https://github.com/drummersface/sprint04
+- Run the following command via streamlit (assuming streamlit is installed on the local workstation): streamlit run app.py
+- If your browser doesn't automatically open a new tab pointing to the application, open a new tab and go to: http://localhost:10000
 """

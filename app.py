@@ -44,11 +44,11 @@ try:
     df['is_4wd'] = df['is_4wd'].astype(bool)
     df['date_posted'] = pd.to_datetime(df['date_posted'])
 
-    #st.write(df.head())  # Display the first few rows of the DataFrame
-    st.header("Sprint 4 project")
+    st.header("Sprint 4 project", divider="gray")
+    st.subheader("Analysis of vehicle data")
 
     # Pie chart of car conditions
-    show_pie_chart = st.checkbox("Show Pie Chart of Conditions")
+    show_pie_chart = st.checkbox("Show pie chart of conditions or bar chart of model year vs. price")
 
     if show_pie_chart:
         fig = px.pie(df, names='condition', title='Conditions', color_discrete_sequence=px.colors.qualitative.Set3)
@@ -61,10 +61,6 @@ try:
     # Histogram for price vs odometer
     fig = px.histogram(df, y='price', x='odometer', title='Price Based on Mileage', color_discrete_sequence=px.colors.qualitative.Set3)
     st.plotly_chart(fig)  # Correct method to display in Streamlit
-
-    # Box plot for price vs odometer
-    fig = px.box(df, y='price', x='odometer', title='Price Distribution Based on Mileage', color_discrete_sequence=px.colors.qualitative.Set3)
-    st.plotly_chart(fig)
 
     # Scatterplot for price vs. odometer
     fig = px.scatter(df, x='odometer', y='price', title='Price vs. Odometer')
