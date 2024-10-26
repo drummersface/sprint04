@@ -44,8 +44,8 @@ try:
     df['is_4wd'] = df['is_4wd'].astype(bool)
     df['date_posted'] = pd.to_datetime(df['date_posted'])
 
-    st.write(df.head())  # Display the first few rows of the DataFrame
-    st.header("Sprint 4 project")
+    #st.write(df.head())  # Display the first few rows of the DataFrame
+    #st.header("Sprint 4 project")
 
     # Pie chart of car conditions
     show_pie_chart = st.checkbox("Show Pie Chart of Conditions")
